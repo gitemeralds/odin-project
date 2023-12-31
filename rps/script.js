@@ -34,13 +34,24 @@ scissorsButton.addEventListener("click", () => {
   if (result === "It's a tie!") {
     return;
   } else if (result === "You lose this round!") {
-    computerScore ++;
+    computerScore++;
     updateComputerScore(computerScore);
   } else {
-    playerScore ++;
+    playerScore++;
     updatePlayerScore(playerScore);
   }
+  checkGameEnd(playerScore, computerScore);
 });
+
+const checkGameEnd = (playerScore, computerScore) => {
+  if (playerScore === 5) {
+    alert("Game over");
+    alert("You win the game!");
+  } else if (computerScore === 5) {
+    alert("Game over");
+    alert("You lose the game!");
+  }
+};
 
 const updatePlayerScore = (playerScore) => {
   playerScoreDisplay.textContent = "Player Score: " + playerScore;
