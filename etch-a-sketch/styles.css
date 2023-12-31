@@ -1,0 +1,16 @@
+.grid-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  height: 5px;
+  width: 5px;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+}
