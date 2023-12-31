@@ -13,7 +13,6 @@ let scissorsButton = document.createElement("button");
 rpsButtonsContainer.appendChild(scissorsButton);
 let paperButton = document.createElement("button");
 rpsButtonsContainer.appendChild(paperButton);
-let resetButton = document.createElement("button");
 let computerScore = 0;
 let playerScore = 0;
 //DOM elements classes
@@ -31,6 +30,22 @@ rockButton.textContent = "Rock";
 scissorsButton.addEventListener("click", () => {
   playerSelection = scissorsButton.textContent.toLowerCase();
   let result = playRound(playerSelection);
+  checkResults(result);
+});
+
+rockButton.addEventListener("click", () => {
+  playerSelection = rockButton.textContent.toLowerCase();
+  let result = playRound(playerSelection);
+  checkResults(result);
+});
+
+paperButton.addEventListener("click", () => {
+  playerSelection = paperButton.textContent.toLowerCase();
+  let result = playRound(playerSelection);
+  checkResults(result);
+});
+
+const checkResults = (result) => {
   if (result === "It's a tie!") {
     return;
   } else if (result === "You lose this round!") {
@@ -41,16 +56,24 @@ scissorsButton.addEventListener("click", () => {
     updatePlayerScore(playerScore);
   }
   checkGameEnd(playerScore, computerScore);
-});
-
+};
 const checkGameEnd = (playerScore, computerScore) => {
   if (playerScore === 5) {
     alert("Game over");
     alert("You win the game!");
+    resetScores();
   } else if (computerScore === 5) {
     alert("Game over");
     alert("You lose the game!");
+    resetScores();
   }
+};
+
+const resetScores = () => {
+  let playerScore = 0;
+  let computerScore = 0;
+  playerScoreDisplay.textContent = "Player Score: " + playerScore;
+  computerScoreDisplay.textContent = "Computer Score: " + computerScore;
 };
 
 const updatePlayerScore = (playerScore) => {
@@ -98,13 +121,6 @@ const playRound = (playerChoice) => {
       result = "You win this round!";
     }
   }
-  if (result == "It's a tie!") {
-    alert("This round is a tie!");
-    playerChoice = getPlayerChoice();
-    computerChoice = getComputerChoice();
-    return playRound(playerChoice, computerChoice);
-  } else {
-    alert(result);
-  }
+  alert(result);
   return result;
 };
