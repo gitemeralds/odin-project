@@ -27,7 +27,28 @@ playerScoreDisplay.textContent = "Player Score: " + playerScore;
 scissorsButton.textContent = "Scissors";
 paperButton.textContent = "Paper";
 rockButton.textContent = "Rock";
+//event handlers
+scissorsButton.addEventListener("click", () => {
+  playerSelection = scissorsButton.textContent.toLowerCase();
+  let result = playRound(playerSelection);
+  if (result === "It's a tie!") {
+    return;
+  } else if (result === "You lose this round!") {
+    computerScore ++;
+    updateComputerScore(computerScore);
+  } else {
+    playerScore ++;
+    updatePlayerScore(playerScore);
+  }
+});
 
+const updatePlayerScore = (playerScore) => {
+  playerScoreDisplay.textContent = "Player Score: " + playerScore;
+};
+
+const updateComputerScore = (computerScore) => {
+  computerScoreDisplay.textContent = "Computer Score: " + computerScore;
+};
 const getComputerChoice = () => {
   let computerChoice = ["rock", "paper", "scissors"][
     Math.floor(Math.random() * 3)
@@ -36,19 +57,9 @@ const getComputerChoice = () => {
   return computerChoice;
 };
 
-const getPlayerChoice = () => {
-  let validMoves = ["rock", "paper", "scissors"];
-  let playerChoice = prompt("Please enter yout move: ");
-  if (playerChoice != null && validMoves.includes(playerChoice.toLowerCase())) {
-    return playerChoice.toLowerCase();
-  } else {
-    alert("That move is invalid.");
-    return getPlayerChoice();
-  }
-};
-
-const playRound = (playerChoice, computerChoice) => {
+const playRound = (playerChoice) => {
   let result;
+  computerChoice = getComputerChoice();
   alert("Player's choice is " + playerChoice);
   alert("Computer's choice is " + computerChoice);
   if (playerChoice == "rock") {
@@ -83,75 +94,6 @@ const playRound = (playerChoice, computerChoice) => {
     return playRound(playerChoice, computerChoice);
   } else {
     alert(result);
-    return result;
   }
+  return result;
 };
-
-const game = () => {
-  let playerScore = 0;
-  let computerScore = 0;
-  let playerChoice = getPlayerChoice();
-  let computerChoice = getComputerChoice();
-  let roundResult = playRound(playerChoice, computerChoice);
-  if (roundResult === "You win this round!") {
-    playerScore++;
-  } else {
-    computerScore++;
-  }
-  alert("Computer score is: " + computerScore);
-  alert("Player score is: " + playerScore);
-  playerChoice = getPlayerChoice();
-  computerChoice = getComputerChoice();
-  roundResult = playRound(playerChoice, computerChoice);
-  if (roundResult === "You win this round!") {
-    playerScore++;
-  } else {
-    computerScore++;
-  }
-  alert("Computer score is: " + computerScore);
-  alert("Player score is: " + playerScore);
-
-  playerChoice = getPlayerChoice();
-  computerChoice = getComputerChoice();
-  roundResult = playRound(playerChoice, computerChoice);
-  if (roundResult === "You win this round!") {
-    playerScore++;
-  } else {
-    computerScore++;
-  }
-  alert("Computer score is: " + computerScore);
-  alert("Player score is: " + playerScore);
-
-  playerChoice = getPlayerChoice();
-  computerChoice = getComputerChoice();
-  roundResult = playRound(playerChoice, computerChoice);
-  if (roundResult === "You win this round!") {
-    playerScore++;
-  } else {
-    computerScore++;
-  }
-  alert("Computer score is: " + computerScore);
-  alert("Player score is: " + playerScore);
-
-  playerChoice = getPlayerChoice();
-  computerChoice = getComputerChoice();
-  roundResult = playRound(playerChoice, computerChoice);
-  if (roundResult === "You win this round!") {
-    playerScore++;
-  } else {
-    computerScore++;
-  }
-  alert("Computer score is: " + computerScore);
-  alert("Player score is: " + playerScore);
-  if (playerScore > computerScore) {
-    alert("You win the game!");
-  } else {
-    alert("You lose the game!");
-  }
-};
-
-/*
-TODO:
--add alert "Player score is:" and also for the computer score.
--add alert that shows what the computer chose and what the player chose.
-*/
