@@ -1,3 +1,19 @@
+let scoreDisplaysContainer = document.createElement("div");
+document.body.appendChild(scoreDisplaysContainer);
+let computerScoreDisplay = document.createElement("div");
+document.scoreDisplaysContainer.appendChild(computerScoreDisplay);
+let playerScoreDisplay = document.createElement("div");
+document.scoreDisplaysContainer.appendChild(playerScoreDisplay);
+let rpsButtonsContainer = document.createElement("div");
+document.body.appendChild(rpsButtonsContainer);
+let rockButton = document.createElement("button");
+document.rpsButtonsContainer.appendChild(rockButton);
+let scissorsButton = document.createElement("button");
+document.rpsButtonsContainer.appendChild(scissorsButton);
+let paperButton = document.createElement("button");
+document.rpsButtonsContainer.appendChild(paperButton);
+let resetButton = document.createElement("button");
+
 const getComputerChoice = () => {
   let computerChoice = ["rock", "paper", "scissors"][
     Math.floor(Math.random() * 3)
