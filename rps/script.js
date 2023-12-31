@@ -20,9 +20,13 @@ let playerScore = 0;
 scoreDisplaysContainer.classList.add("scoreDisplaysContainer");
 computerScoreDisplay.classList.add("computerScoreDisplay");
 playerScoreDisplay.classList.add("playerScoreDisplay");
+rpsButtonsContainer.classList.add("rpsButtonsContainer");
 //Text content
 computerScoreDisplay.textContent = "Computer Score: " + computerScore;
 playerScoreDisplay.textContent = "Player Score: " + playerScore;
+scissorsButton.textContent = "Scissors";
+paperButton.textContent = "Paper";
+rockButton.textContent = "Rock";
 
 const getComputerChoice = () => {
   let computerChoice = ["rock", "paper", "scissors"][
