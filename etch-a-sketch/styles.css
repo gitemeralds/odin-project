@@ -1,16 +1,24 @@
-.grid-container {
+.gridContainer {
   display: flex;
   flex-direction: column;
+  height: 500px;
+  width: 500px;
 }
 
 .row {
   display: flex;
+  flex-grow: 1;
 }
 
 .column {
-  height: 5px;
-  width: 5px;
+  flex-grow: 1;
+  min-height: 6px;
+  min-width: 6px;
   border-color: black;
-  border-width: 1px;
+  border-width: 0.1px;
   border-style: solid;
+}
+
+.column:hover {
+  background-color: yellow; /* Change background color on hover */
 }

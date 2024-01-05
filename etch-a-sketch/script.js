@@ -1,7 +1,7 @@
 //DOM elements and variables
 let grid_container = document.createElement("div");
 document.body.appendChild(grid_container);
-let grid_size = 100;
+let grid_size = 5;
 //Classes
 grid_container.classList.add("gridContainer");
 
