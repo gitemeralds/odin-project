@@ -4,6 +4,10 @@ document.body.appendChild(grid_container);
 let grid_size = 5;
 //Classes
 grid_container.classList.add("gridContainer");
+//functions
+changeColorToBlack = (element) => {
+  element.style.backgroundColor = "black";
+};
 
 for (let current_row = grid_size; current_row > 0; current_row--) {
   let row = document.createElement("div");
@@ -14,4 +18,13 @@ for (let current_row = grid_size; current_row > 0; current_row--) {
     col.classList.add("column", "column" + current_col);
     row.appendChild(col);
   }
+}
+
+let columns = document.getElementsByClassName("column");
+
+for (let i = 0; i < columns.length; i++) {
+  columns[i].addEventListener("mousedown", (e) => {
+    changeColorToBlack(columns[i]);
+    e.preventDefault();
+  });
 }
