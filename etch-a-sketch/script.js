@@ -19,12 +19,26 @@ for (let current_row = grid_size; current_row > 0; current_row--) {
     row.appendChild(col);
   }
 }
-
+let mouseIsDown = false;
 let columns = document.getElementsByClassName("column");
 
 for (let i = 0; i < columns.length; i++) {
   columns[i].addEventListener("mousedown", (e) => {
+    mouseIsDown = true;
     changeColorToBlack(columns[i]);
     e.preventDefault();
   });
 }
+
+for (let i = 0; i < columns.length; i++) {
+  columns[i].addEventListener("mouseenter", (e) => {
+    if (mouseIsDown) {
+      changeColorToBlack(columns[i]);
+      e.preventDefault();
+    }
+  });
+}
+
+document.addEventListener("mouseup", () => {
+  mouseIsDown = false;
+});
