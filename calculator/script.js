@@ -41,44 +41,92 @@ for (let i = 0; i < rows.length; i++) {
 
 const plusButton = document.querySelector(".row4 .button1");
 plusButton.textContent = " + ";
+plusButton.classList.add("operator");
 const minusButton = document.querySelector(".row3 .button1");
 minusButton.textContent = " - ";
+minusButton.classList.add("operator");
 const timesButton = document.querySelector(".row2 .button1");
 timesButton.textContent = " x ";
+timesButton.classList.add("operator");
 const divisionButton = document.querySelector(".row1 .button1");
 divisionButton.textContent = " \u00F7 ";
+divisionButton.classList.add("operator");
 const button1 = document.querySelector(".row4 .button4");
 button1.textContent = "1";
+button1.classList.add("number");
 const button2 = document.querySelector(".row4 .button3");
 button2.textContent = "2";
+button2.classList.add("number");
 const button3 = document.querySelector(".row4 .button2");
 button3.textContent = "3";
+button3.classList.add("number");
 const button4 = document.querySelector(".row3 .button4");
 button4.textContent = "4";
+button4.classList.add("number");
 const button5 = document.querySelector(".row3 .button3");
 button5.textContent = "5";
+button5.classList.add("number");
 const button6 = document.querySelector(".row3 .button2");
 button6.textContent = "6";
+button6.classList.add("number");
 const button7 = document.querySelector(".row2 .button4");
 button7.textContent = "7";
+button7.classList.add("number");
 const button8 = document.querySelector(".row2 .button3");
 button8.textContent = "8";
+button8.classList.add("number");
 const button9 = document.querySelector(".row2 .button2");
 button9.textContent = "9";
+button9.classList.add("number");
 const negativeButton = document.querySelector(".row1 .button4");
 negativeButton.textContent = "-/+";
 negativeButton.classList.remove("displayable");
 const button0 = document.querySelector(".row1 .button3");
 button0.textContent = "0";
+button0.classList.add("number");
 const dotButton = document.querySelector(".row1 .button2");
 dotButton.textContent = ".";
 
-displayableButtons = document.querySelectorAll(".displayable");
+const displayableButtons = document.querySelectorAll(".displayable");
+const numberButton = document.querySelectorAll(".number");
+const operatorButton = document.querySelectorAll(".operator");
+let mathExpression = [];
 
-displayableButtons.forEach((button) => {
+numberButton.forEach((button) => {
   button.addEventListener("click", () => {
-    let buttonText = button.textContent;
-    updateDisplay(buttonText);
+    let lastPartOfMathExpression = mathExpression[mathExpression.length - 1];
+    if (
+      typeof parseInt(lastPartOfMathExpression, 10) === "number" &&
+      mathExpression.length &&
+      !isNaN(lastPartOfMathExpression)
+    ) {
+      mathExpression[mathExpression.length - 1] += button.textContent;
+    } else {
+      mathExpression.push(button.textContent);
+    }
+    updateDisplay(button.textContent);
+    console.log(mathExpression);
+  });
+});
+
+operatorButton.forEach((button) => {
+  button.addEventListener("click", () => {
+    let lastPartOfMathExpression = mathExpression[mathExpression.length - 1];
+    if (!mathExpression.length) {
+      alert("No number found on display.");
+      return;
+    } else if (
+      !isNaN(lastPartOfMathExpression) &&
+      typeof parseInt(lastPartOfMathExpression) === "number"
+    ) {
+      mathExpression.push(button.textContent);
+      updateDisplay(button.textContent);
+    } else {
+      mathExpression.splice(mathExpression.length - 1, 1);
+      console.log(mathExpression);
+      mathExpression.push(button.textContent);
+      screen.textContent = mathExpression.join("");
+    }
   });
 });
 
