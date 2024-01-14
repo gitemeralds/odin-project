@@ -30,6 +30,7 @@ for (rows = 4; rows > 0; rows--) {
     row.appendChild(button);
     button.classList.add("button");
     button.classList.add("button" + buttons);
+    button.classList.add("displayable");
   }
 }
 
@@ -66,7 +67,24 @@ const button9 = document.querySelector(".row2 .button2");
 button9.textContent = "9";
 const negativeButton = document.querySelector(".row1 .button4");
 negativeButton.textContent = "-/+";
+negativeButton.classList.remove("displayable");
 const button0 = document.querySelector(".row1 .button3");
 button0.textContent = "0";
 const dotButton = document.querySelector(".row1 .button2");
 dotButton.textContent = ".";
+
+displayableButtons = document.querySelectorAll(".displayable");
+
+displayableButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    let buttonText = button.textContent;
+    updateDisplay(buttonText);
+  });
+});
+
+const updateDisplay = (textToDisplay) => {
+  screen.textContent += textToDisplay;
+};
+
+//TODO fix being able to type more than two dots on the same number
+//TODO fix being able to type more than one math symbol in a row
