@@ -145,9 +145,28 @@ dotButton.addEventListener("click", () => {
   }
 });
 
+negativeButton.addEventListener("click", () => {
+  if (!isNaN(parseFloat(mathExpression[mathExpression.length - 1]))) {
+    if (mathExpression[mathExpression.length - 1].toString().includes("-")) {
+      console.log("true");
+      mathExpression[mathExpression.length - 1] = mathExpression[
+        mathExpression.length - 1
+      ]
+        .toString()
+        .replace("-", "");
+      console.log(mathExpression);
+      screen.textContent = mathExpression.join("");
+    } else {
+      mathExpression[mathExpression.length - 1] =
+        "-" + mathExpression[mathExpression.length - 1];
+      screen.textContent = mathExpression.join("");
+    }
+  } else {
+    alert("No number found.");
+    return;
+  }
+});
+
 const updateDisplay = (textToDisplay) => {
   screen.textContent += textToDisplay;
 };
-
-//TODO fix being able to type more than two dots on the same number
-//TODO fix being able to type more than one math symbol in a row
