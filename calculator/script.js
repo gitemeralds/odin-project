@@ -96,7 +96,7 @@ numberButton.forEach((button) => {
   button.addEventListener("click", () => {
     let lastPartOfMathExpression = mathExpression[mathExpression.length - 1];
     if (
-      typeof parseInt(lastPartOfMathExpression, 10) === "number" &&
+      typeof parseFloat(lastPartOfMathExpression, 10) === "number" &&
       mathExpression.length &&
       !isNaN(lastPartOfMathExpression)
     ) {
@@ -117,7 +117,7 @@ operatorButton.forEach((button) => {
       return;
     } else if (
       !isNaN(lastPartOfMathExpression) &&
-      typeof parseInt(lastPartOfMathExpression) === "number"
+      typeof parseFloat(lastPartOfMathExpression) === "number"
     ) {
       mathExpression.push(button.textContent);
       updateDisplay(button.textContent);
@@ -128,6 +128,21 @@ operatorButton.forEach((button) => {
       screen.textContent = mathExpression.join("");
     }
   });
+});
+
+dotButton.addEventListener("click", () => {
+  if (!isNaN(parseFloat(mathExpression[mathExpression.length - 1]))) {
+    if (mathExpression[mathExpression.length - 1].toString().includes(".")) {
+      alert("This number is already a floating point number.");
+      return;
+    } else {
+      mathExpression[mathExpression.length - 1] += dotButton.textContent;
+      updateDisplay(dotButton.textContent);
+    }
+  } else {
+    mathExpression.push("0.");
+    updateDisplay("0.");
+  }
 });
 
 const updateDisplay = (textToDisplay) => {
