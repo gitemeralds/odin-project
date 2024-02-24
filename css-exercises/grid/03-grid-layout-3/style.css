@@ -37,6 +37,7 @@ ul {
 .header {
   background-color: #393f4d;
   grid-area: header;
+  text-align: left;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
@@ -49,6 +50,9 @@ ul {
 .sidebar {
   background-color: #c50208;
   grid-area: sidebar;
+  display: grid;
+  gap: 50px;
+  text-align: center;
 }
 
 .sidebar .photo {
@@ -64,6 +68,9 @@ ul {
   color: black;
   font-size: 16px;
   font-weight: normal;
+  text-align: center;
+  display: grid;
+  align-items: center;
 }
 
 .nav {
